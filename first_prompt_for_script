@@ -1,0 +1,51 @@
+Hello! I'm a trading enthusiast but not a programmer. I need your help to create a Python script that can backtest a trading strategy for me. Please generate a complete Python script that I can run.
+
+Here's what the script should do:
+1.  Fetch historical price data (Open, High, Low, Close, Volume) for a specific ticker symbol and timeframe from Yahoo Finance using the `yfinance` library.
+2.  Calculate any necessary technical indicators (e.g., RSI, Moving Averages, ATR) using `pandas` or other common data manipulation techniques.
+3.  Implement a trading strategy based on rules I will provide.
+4.  Simulate trades (long and/or short, as specified) based on these rules, considering one trade at a time (i.e., close an existing position before opening a new one in the same direction).
+5.  Calculate and display key performance metrics such as:
+    * Total Profit/Loss (and as a percentage of initial capital)
+    * Number of Trades (total, winning, losing)
+    * Win Rate (percentage of profitable trades)
+    * Average Profit per Winning Trade
+    * Average Loss per Losing Trade
+    * Profit Factor (Gross Profit / Gross Loss)
+    * Maximum Drawdown (as a percentage of equity)
+    * Sharpe Ratio (assume a risk-free rate of 0% for simplicity, or make it an easily adjustable parameter)
+6.  (Optional but highly desired) Generate a simple plot using `matplotlib` showing the closing price, and overlay buy (long entry) and sell (long exit/short entry) signals on the chart.
+
+To help you create the script, here are the details of my strategy:
+
+* **Strategy Name:** [User will provide, e.g., My RSI Momentum Crossover Strategy]
+* **Ticker Symbol:** [User will provide, e.g., 'AAPL', 'MSFT', 'BTC-USD', 'PETR4.SA']
+* **Timeframe for Data:** [User will provide, e.g., '1d' for daily, '1h' for hourly, '30m' for 30-minute. Note: yfinance has limitations on the amount of intraday data it can fetch for free, especially for very long periods.]
+* **Backtesting Period Start Date:** [User will provide, e.g., '2020-01-01']
+* **Backtesting Period End Date:** [User will provide, e.g., '2023-12-31']
+* **Initial Capital:** [User will provide, e.g., 10000] (This will be in the currency of the ticker)
+* **Position Sizing per trade:** [User will provide one of these options clearly:
+    * e.g., 'Fixed number of shares/units: 100'
+    * e.g., 'Fixed monetary amount: 1000 (invest 1000 units of currency per trade)'
+    * e.g., 'Percentage of current equity: 10% (invest 10% of current total capital per trade)']
+* **Long Entry Conditions (Buy):** [User will describe in plain English. Be specific! e.g., 'RSI(14) crosses below 30 AND 50-period SMA is above 200-period SMA.']
+* **Long Exit Conditions (Sell to close long):** [User will describe, e.g., 'RSI(14) crosses above 70' OR 'Price hits Stop Loss' OR 'Price hits Take Profit'.]
+* **Short Entry Conditions (Sell Short - Specify 'None' if not used):** [User will describe, e.g., 'RSI(14) crosses above 70 AND 50-period SMA is below 200-period SMA.']
+* **Short Exit Conditions (Buy to cover short - Specify 'None' if not using short entries):** [User will describe, e.g., 'RSI(14) crosses below 30' OR 'Price hits Stop Loss' OR 'Price hits Take Profit'.]
+* **Stop-Loss per trade:** [User will provide, e.g., '2% below entry price for longs / 2% above entry for shorts' OR '1.5 * ATR(14) value at entry'. If ATR-based, specify how ATR is calculated and used.]
+* **Take-Profit per trade:** [User will provide, e.g., '4% above entry price for longs / 4% below entry for shorts' OR 'Risk/Reward ratio of 1:2 based on Stop-Loss distance'.]
+* **Specific indicators and their parameters needed for the strategy:** [User will list all. e.g.,
+    * 'RSI: period = 14, overbought = 70, oversold = 30'
+    * 'Simple Moving Averages (SMA): short_period = 50, long_period = 200'
+    * 'Average True Range (ATR): period = 14 (for stop-loss calculation if used)']
+* **(Optional) Commission per trade:** [User will provide, e.g., '0.1% of trade value' or '1 unit of currency per trade'. If not provided, assume 0.]
+
+Please make the Python script:
+* Use common and relatively easy-to-understand libraries like `pandas`, `yfinance`, `numpy`, and `matplotlib`.
+* Include clear comments explaining each major part of the code, especially the strategy logic.
+* At the very beginning of the script, include a commented-out section listing all necessary libraries and the command to install them (e.g., `# Required libraries: pandas, yfinance, numpy, matplotlib. Install using: pip install pandas yfinance numpy matplotlib`).
+* Organize all the user-defined strategy parameters (ticker, dates, indicator settings, SL/TP percentages, initial capital, position sizing rules, etc.) as clearly named variables at the top of the script. This will make it easy for me to find and modify them later if I want to experiment with different settings without digging deep into the code.
+* Ensure the script handles potential issues like insufficient data for indicator calculations at the beginning of the dataset (e.g., by starting the trading simulation only after all indicators have valid values).
+* The script should print the performance metrics clearly at the end.
+
+Thank you very much for your help!
